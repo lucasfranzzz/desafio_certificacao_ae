@@ -1,0 +1,104 @@
+version: 2
+
+sources:
+  - name: raw_adventure_works 
+    description: DW com os dados brutos da Adventure Works 
+    database: FEA24_9
+    schema: raw_adventure_works
+    tables:
+      - name: customer
+        columns:
+          - name: customerId
+            tests:
+              - unique
+              - not_null
+      - name: person
+        columns:
+          - name: businessEntityId
+            tests:
+              - unique
+              - not_null
+      - name: salesreason
+        columns:
+          - name: salesReasonId
+            tests:
+              - unique
+              - not_null
+      - name: salesperson
+        columns:
+          - name: businessEntityId
+            tests:
+              - unique
+              - not_null
+      - name: employee
+        columns:
+          - name: businessEntityId
+            tests:
+              - unique
+              - not_null
+      - name: stateprovince
+        columns:
+          - name: stateProvinceId
+            tests:
+              - unique
+              - not_null
+      - name: address
+        columns:
+          - name: addressId
+            tests:
+              - unique
+              - not_null
+      - name: countryregion
+        columns:
+          - name: countryRegionCode
+            tests:
+              - unique
+              - not_null
+      - name: salesorderheader
+        columns:
+          - name: salesOrderId
+            tests:
+              - unique
+              - not_null
+      - name: salesorderdetail
+        columns:
+          - name: "(salesOrderId || '-' || salesOrderDetailId)"
+            tests:
+              - unique
+              - not_null
+      - name: product
+        columns:
+          - name: productId
+            tests:
+              - unique
+              - not_null
+      - name: store
+        columns:
+          - name: businessentityid
+            tests:
+              - unique
+              - not_null
+      - name: productsubcategory
+        columns:
+          - name: productsubcategoryid
+            tests:
+              - unique
+              - not_null
+      - name: productcategory
+        columns:
+          - name: productcategoryid
+            tests:
+              - unique
+              - not_null
+      - name: shipmethod
+        columns:
+          - name: shipmethodid
+            tests:
+              - unique
+              - not_null
+      - name: salesorderheadersalesreason
+        columns:
+          - name: "(salesorderid || '-' || salesreasonid)"
+            tests:
+              - unique
+              - not_null
