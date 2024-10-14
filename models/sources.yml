@@ -102,3 +102,33 @@ sources:
             tests:
               - unique
               - not_null
+      - name: currencyrate
+        columns:
+          - name: currencyrateid
+            tests:
+              - unique
+              - not_null
+      - name: currency
+        columns:
+          - name: currencycode
+            tests:
+              - unique
+              - not_null
+      - name: specialofferproduct
+        columns:
+          - name: "(specialofferid || '-' || productid)"
+            tests:
+              - unique
+              - not_null
+      - name: specialoffer
+        columns:
+          - name: specialofferid
+            tests:
+              - unique
+              - not_null
+      - name: creditcard
+        columns:
+          - name: creditcardid
+            tests:
+              - unique
+              - not_null

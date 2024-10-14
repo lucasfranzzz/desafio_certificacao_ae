@@ -1,0 +1,97 @@
+version: 2
+
+models:
+  - name: dim_address
+    columns:
+      - name: address_id
+        tests:
+          - unique
+          - not_null
+  - name: dim_calendar
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+  - name: dim_credit_card
+    columns:
+      - name: credit_card_id
+        tests:
+          - unique
+          - not_null
+  - name: dim_customer
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+  - name: dim_order_sales_reason
+    columns:
+      - name: sk_order_sales_reason
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        tests:
+          - relationships:
+              field: order_id
+              to: ref('fct_orders')
+  - name: dim_product
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+  - name: dim_sales_person
+    columns:
+      - name: sales_person_id
+        tests:
+          - unique
+          - not_null
+  - name: dim_ship_method
+    columns:
+      - name: ship_method_id
+        tests:
+          - unique
+          - not_null
+  - name: fct_orders
+    columns:
+      - name: sk_order_detail
+        tests:
+          - unique
+          - not_null
+      - name: order_ship_to_address_id
+        tests:
+          - relationships:
+              field: address_id
+              to: ref('dim_address')
+      - name: order_date
+        tests:
+          - relationships:
+              field: date_day
+              to: ref('dim_calendar')
+      - name: order_credit_card_id
+        tests:
+          - relationships:
+              field: credit_card_id
+              to: ref('dim_credit_card')
+      - name: order_customer_id
+        tests:
+          - relationships:
+              field: customer_id
+              to: ref('dim_customer')
+      - name: detail_product_id
+        tests:
+          - relationships:
+              field: product_id
+              to: ref('dim_product')
+      - name: order_sales_person_id
+        tests:
+          - relationships:
+              field: sales_person_id
+              to: ref('dim_sales_person')
+      - name: order_ship_method_id
+        tests:
+          - relationships:
+              field: ship_method_id
+              to: ref('dim_ship_method')
