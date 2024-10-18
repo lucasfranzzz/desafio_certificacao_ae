@@ -1,0 +1,6 @@
+version: 2
+data_tests:
+  - name: assert_total_2011_revenue
+    description: >
+      Averiguação do valor total de vendas brutas no ano de 2011, 
+      que deve ser igual a $12.646.112,16 com tolerância de +-$0,01.
