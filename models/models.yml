@@ -2,30 +2,35 @@ version: 2
 
 models:
   - name: dim_address
+    description: "Tabela de endereços, informando cidade, estado e país."
     columns:
       - name: address_id
         tests:
           - unique
           - not_null
   - name: dim_calendar
+    description: "Tabela de calendário, entre a data do primeiro e do último pedidos da tabela fct_orders."
     columns:
       - name: date_day
         tests:
           - unique
           - not_null
   - name: dim_credit_card
+    description: "Tabela de cadastro de cartões de crédito."
     columns:
       - name: credit_card_id
         tests:
           - unique
           - not_null
   - name: dim_customer
+    description: "Tabela de cadastro de clientes."
     columns:
       - name: customer_id
         tests:
           - unique
           - not_null
   - name: dim_order_sales_reason
+    description: "Tabela de cadastro de motivos de compra por ordem."
     columns:
       - name: sk_order_sales_reason
         tests:
@@ -37,24 +42,28 @@ models:
               field: order_id
               to: ref('fct_orders')
   - name: dim_product
+    description: "Tabela de cadastro de produtos."
     columns:
       - name: product_id
         tests:
           - unique
           - not_null
   - name: dim_sales_person
+    description: "Tabela de cadastro de vendedores."
     columns:
       - name: sales_person_id
         tests:
           - unique
           - not_null
   - name: dim_ship_method
+    description: "Tabela de cadastro de métodos de envio."
     columns:
       - name: ship_method_id
         tests:
           - unique
           - not_null
   - name: fct_orders
+    description: "Tabela de cadastro de ordens de compra e seus detalhamentos."
     columns:
       - name: sk_order_detail
         tests:

@@ -49,18 +49,19 @@ with base_int_orders_detailed as
         , base_int_orders_detailed.order_credit_card_id
         , base_int_orders_detailed.detail_qty
 
-        , base_int_orders_detailed.detail_unit_price as detail_unit_price
-        , base_int_orders_detailed.detail_unit_price_discount as detail_unit_price_discount
-        , base_int_orders_detailed.detail_qty * base_int_orders_detailed.detail_unit_price as detail_value
-        , detail_value * (1 - base_int_orders_detailed.detail_unit_price_discount) as detail_net_value
+        , base_int_orders_detailed.detail_unit_price
+        , base_int_orders_detailed.detail_value
+        , base_int_orders_detailed.detail_unit_price_discount_pct
+        , base_int_orders_detailed.detail_discount_value
+        , base_int_orders_detailed.detail_net_value
 
-        , base_int_orders_detailed.order_subtotal as order_subtotal
-        , (detail_value / base_int_orders_detailed.order_subtotal) * base_int_orders_detailed.order_tax_amt as detail_tax_amt
-        , base_int_orders_detailed.order_tax_amt as order_tax_amt
-        , (detail_value / base_int_orders_detailed.order_subtotal) * base_int_orders_detailed.order_freight as detail_freight
-        , base_int_orders_detailed.order_freight as order_freight
-        , (detail_value / base_int_orders_detailed.order_subtotal) * base_int_orders_detailed.order_total_due as detail_total_due
-        , base_int_orders_detailed.order_total_due as order_total_due
+        , base_int_orders_detailed.order_subtotal
+        , base_int_orders_detailed.detail_tax_amt
+        , base_int_orders_detailed.order_tax_amt
+        , base_int_orders_detailed.detail_freight
+        , base_int_orders_detailed.order_freight
+        , base_int_orders_detailed.detail_total_due
+        , base_int_orders_detailed.order_total_due
 
         , base_int_orders_detailed.order_date
         , base_int_orders_detailed.order_due_date

@@ -7,7 +7,7 @@ with base_order_detail as
         , order_detail_qty as detail_qty
         , order_special_offer_id as detail_special_offer_id
         , order_unit_price as detail_unit_price
-        , order_unit_price_discount as detail_unit_price_discount
+        , order_unit_price_discount as detail_unit_price_discount_pct
     from {{ ref('stg_sales_order_detail') }}
 )
 
@@ -61,9 +61,10 @@ with base_order_detail as
         , base_order_detail.detail_qty
 
         , base_order_detail.detail_unit_price
-        , base_order_detail.detail_unit_price_discount
         , base_order_detail.detail_qty * base_order_detail.detail_unit_price as detail_value
-        , detail_value * (1 - base_order_detail.detail_unit_price_discount) as detail_net_value
+        , base_order_detail.detail_unit_price_discount_pct
+        , detail_value * base_order_detail.detail_unit_price_discount_pct as detail_discount_value
+        , detail_value * (1 - base_order_detail.detail_unit_price_discount_pct) as detail_net_value
 
         , base_order_header.order_subtotal
         , round((detail_value / base_order_header.order_subtotal) * base_order_header.order_tax_amt,2) as detail_tax_amt

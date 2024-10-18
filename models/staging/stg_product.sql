@@ -12,9 +12,9 @@ with source as
         , cast(standardcost as number(38,2)) as product_standard_cost
         , cast(listprice as number(38,2)) as product_list_price
         , cast(daystomanufacture as number(38,2)) as product_days_to_manufacture
-        , cast(productline as varchar) as product_line
-        , cast(class as varchar) as product_class
-        , cast(style as varchar) as product_style
+        , cast(ifnull(productline,'Line not provided') as varchar) as product_line
+        , cast(ifnull(class,'Class not provided') as varchar) as product_class
+        , cast(ifnull(style,'Style not provided') as varchar) as product_style
         , cast(productsubcategoryid as varchar) as product_subcategory_id
         , cast(productmodelid as varchar) as product_model_id
         , cast(sellstartdate as date) as product_sell_start_date

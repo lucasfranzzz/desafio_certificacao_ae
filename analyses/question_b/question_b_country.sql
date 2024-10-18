@@ -4,7 +4,9 @@ with base_orders as
         order_id
         , order_ship_to_address_id
         , detail_product_id
+        , detail_value
         , detail_net_value
+        , detail_discount_value
     from {{ ref('fct_orders') }}
 )
 
@@ -31,9 +33,11 @@ with base_orders as
     select
         base_address.country_region_name
         , base_product.product_name
+        , sum(base_orders.detail_value) as valor_negociado
+        , sum(base_orders.detail_discount_value) as valor_desconto
         , sum(base_orders.detail_net_value) as valor_liquido_negociado
         , count(distinct base_orders.order_id) as qtd_pedidos
-        , round(valor_liquido_negociado / qtd_pedidos, 2) as ticket_medio
+        , round((valor_liquido_negociado) / qtd_pedidos, 2) as ticket_medio
         , row_number() over (partition by base_address.country_region_name order by ticket_medio desc) as ticket_medio_rank
     from base_orders
     left join base_address
@@ -41,7 +45,8 @@ with base_orders as
     left join base_product
         on base_product.product_id = base_orders.detail_product_id
     group by 1, 2
-    order by 1 asc, ticket_medio_rank asc
+    order by ticket_medio desc
 )
 
-select * from joined where ticket_medio_rank <= 5
+select * from joined where ticket_medio_rank <= 1
+    order by ticket_medio desc

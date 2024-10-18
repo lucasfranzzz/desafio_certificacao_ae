@@ -20,9 +20,9 @@ with base_orders as
 (
     select
         ifnull(base_credit_card.credit_card_type, 'no_credit_card') as credit_card_type
-        , count(distinct order_id) as numero_de_pedidos
-        , sum(detail_qty) as quantidade_comprada
         , sum(detail_value) as valor_total_negociado
+        , sum(detail_qty) as quantidade_comprada
+        , count(distinct order_id) as numero_de_pedidos
     from base_orders
     left join base_credit_card
         on base_orders.order_credit_card_id = base_credit_card.credit_card_id

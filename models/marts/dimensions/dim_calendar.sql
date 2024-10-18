@@ -1,1 +1,12 @@
-{{ dbt_date.get_date_dimension("2011-05-31", "2014-07-01") }}
+with base_calendar as
+(
+    select
+        *
+    from {{ ref('int_calendar') }}
+)
+
+select 
+    date_day
+    , month_start_date
+    , year_start_date
+from base_calendar

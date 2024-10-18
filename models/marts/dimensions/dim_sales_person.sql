@@ -28,7 +28,6 @@ with base_sales_person as
     select
         person_id
         , person_type
-        , title
         , name
     from {{ ref('stg_person') }}
     where person_type = 'SP'
@@ -38,7 +37,6 @@ with base_sales_person as
 (
     select
         base_sales_person.sales_person_id
-        , base_person.title
         , base_person.name
         , base_employee.employee_job_title
         , base_employee.employee_hire_date

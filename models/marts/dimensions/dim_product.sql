@@ -68,8 +68,8 @@ with base_product as
         , base_product.product_line
         , base_product.product_class
         , base_product.product_style
-        , subcategory_category.product_subcategory_name
-        , subcategory_category.product_category_name
+        , ifnull(subcategory_category.product_subcategory_name, 'Subcategory not provided') as product_subcategory_name
+        , ifnull(subcategory_category.product_category_name, 'Category not provided') as product_category_name
         , base_product.product_model_id
         , base_product.product_sell_start_date
         , base_product.product_sell_end_date

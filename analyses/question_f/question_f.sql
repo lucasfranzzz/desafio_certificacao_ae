@@ -19,8 +19,8 @@ with base_orders as
 (
     select
         order_id
-        , sales_reason_type
     from {{ ref('dim_order_sales_reason') }}
+    where sales_reason_type = 'Promotion'
 )
 
 , joined as
@@ -32,9 +32,8 @@ with base_orders as
     from base_orders
     left join base_product
         on base_orders.detail_product_id = base_product.product_id
-    left join base_reason
+    inner join base_reason
         on base_orders.order_id = base_reason.order_id
-        and base_reason.sales_reason_type = 'Promotion'
     group by 1, 2
     order by 3 desc
     limit 10
