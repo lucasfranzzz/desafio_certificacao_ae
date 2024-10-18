@@ -81,6 +81,7 @@ models:
     description: "Tabela de cadastro de produtos."
     columns:
       - name: product_id
+        description: "ID do produto."
         tests:
           - unique
           - not_null
@@ -92,6 +93,8 @@ models:
         description: "Indicativo de se o produto foi produzido."
       - name: product_finished_goods_flag
         description: "Indicativo de se o produto está pronto para envio."
+      - name: product_color
+        description: "Cor do produto."
       - name: product_safety_stock_level
         description: "Nível de segurança para o estoque do produto."
       - name: product_reorder_point
@@ -192,9 +195,9 @@ models:
           - relationships:
               field: customer_id
               to: ref('dim_customer')
-      - name: territory_id
+      - name: order_territory_id
         description: "ID do território."
-      - name: bill_to_address_id
+      - name: order_bill_to_address_id
         description: "ID do endereço de cobrança."
       - name: order_ship_to_address_id
         description: "ID do endereço de entrega."
@@ -226,6 +229,8 @@ models:
           - relationships:
               field: product_id
               to: ref('dim_product')
+      - name: detail_special_offer_id
+        description: "ID da oferta especial"
       - name: special_offer_description
         description: "Descrição da oferta especial"
       - name: currency_average_rate
