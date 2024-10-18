@@ -5,42 +5,78 @@ models:
     description: "Tabela de endereços, informando cidade, estado e país."
     columns:
       - name: address_id
+        description: "ID do endereço."
         tests:
           - unique
           - not_null
+      - name: address_line
+        description: "Rua e número do endereço."
+      - name: address_city
+        description: "Cidade do endereço."
+      - name: state_province_name
+        description: "Nome do estado do endereço."
+      - name: state_province_code
+        description: "Código do estado do endereço."
+      - name: country_region_name
+        description: "Nome do país do endereço."
+      - name: country_region_code
+        description: "Código do país do endereço."
   - name: dim_calendar
     description: "Tabela de calendário, entre a data do primeiro e do último pedidos da tabela fct_orders."
     columns:
       - name: date_day
+        description: "Dia referente."
         tests:
           - unique
           - not_null
+      - name: month_start_date
+        description: "Dia de início do mês referente."
+      - name: year_start_date
+        description: "Dia de início do ano referente."
   - name: dim_credit_card
     description: "Tabela de cadastro de cartões de crédito."
     columns:
       - name: credit_card_id
+        description: "ID do cartão de crédito."
         tests:
           - unique
           - not_null
+      - name: credit_card_type
+        description: "Tipo do cartão de crédito."
   - name: dim_customer
     description: "Tabela de cadastro de clientes."
     columns:
       - name: customer_id
+        description: "ID do cliente."
         tests:
           - unique
           - not_null
+      - name: customer_person_id
+        description: "ID da pessoa associada ao cliente."
+      - name: customer_name
+        description: "Nome do cliente."
+      - name: customer_territory_id
+        description: "ID do território associado ao cliente."
   - name: dim_order_sales_reason
     description: "Tabela de cadastro de motivos de compra por ordem."
     columns:
       - name: sk_order_sales_reason
+        description: "Surrogate key da ordem de compra e razão de compra."
         tests:
           - unique
           - not_null
       - name: order_id
+        description: "ID da ordem de compra."
         tests:
           - relationships:
               field: order_id
               to: ref('fct_orders')
+      - name: sales_reason_id
+        description: "ID da razão da compra."
+      - name: sales_reason_name
+        description: "Nome da razão de compra."
+      - name: sales_reason_type
+        description: "Tipo da razão de compra."
   - name: dim_product
     description: "Tabela de cadastro de produtos."
     columns:
@@ -48,59 +84,189 @@ models:
         tests:
           - unique
           - not_null
+      - name: product_name
+        description: "Nome do produto."
+      - name: product_number
+        description: "Número do produto."
+      - name: product_make_flag
+        description: "Indicativo de se o produto foi produzido."
+      - name: product_finished_goods_flag
+        description: "Indicativo de se o produto está pronto para envio."
+      - name: product_safety_stock_level
+        description: "Nível de segurança para o estoque do produto."
+      - name: product_reorder_point
+        description: "Nível de recompra do produto."
+      - name: product_standard_cost
+        description: "Preço padrão do produto."
+      - name: product_list_price
+        description: "Preço de lista do produto."
+      - name: product_days_to_manufacture
+        description: "Quantidade de dias para produzir o produto."
+      - name: product_line
+        description: "Linha do produto."
+      - name: product_class
+        description: "Classe do produto."
+      - name: product_style
+        description: "Estilo do produto."
+      - name: product_subcategory_name
+        description: "Subcategoria do produto."
+      - name: product_category_name
+        description: "Categoria do produto."
+      - name: product_model_id
+        description: "ID do modelo do produto."
+      - name: product_sell_start_date
+        description: "Data de início de venda do produto."
+      - name: product_sell_end_date
+        description: "Data de fim de venda do produto."
+      - name: product_discontinued_date
+        description: "Data de descontinuidade do produto."
   - name: dim_sales_person
     description: "Tabela de cadastro de vendedores."
     columns:
       - name: sales_person_id
+        description: "ID do vendedor."
         tests:
           - unique
           - not_null
+      - name: name
+        description: "Nome do vendedor."
+      - name: employee_job_title
+        description: "Cargo do vendedor."
+      - name: employee_hire_date
+        description: "Data de contratação do vendedor."
+      - name: employee_salaried_flag
+        description: "Indicativo se o vendedor é assalariado."
+      - name: employee_current_flag
+        description: "Indicativo se o vendedor é ativo."
+      - name: employee_organization_node
+        description: "Nó da organização do vendedor."
+      - name: territory_id
+        description: "ID do território do vendedor."
+      - name: sales_quota
+        description: "Meta de vendas."
+      - name: bonus
+        description: "Bonus do vendedor."
+      - name: commission_pct
+        description: "Percentual de comissão do vendedor."
+      - name: sales_ytd
+        description: "Vendas do vendedor acumuladas no ano."
+      - name: sales_last_year
+        description: "Vendas do vendedor no ano anterior."
   - name: dim_ship_method
     description: "Tabela de cadastro de métodos de envio."
     columns:
       - name: ship_method_id
+        description: "ID do método de entrega."
         tests:
           - unique
           - not_null
+      - name: ship_method_name
+        description: "Nome do método de entrega."
+      - name: ship_method_base
+        description: "Base do método de entrega."
+      - name: ship_method_rate
+        description: "Rate do método de entrega."
   - name: fct_orders
     description: "Tabela de cadastro de ordens de compra e seus detalhamentos."
     columns:
       - name: sk_order_detail
+        description: "Surrogate key da ordem de compra e seu detalhamento."
         tests:
           - unique
           - not_null
+      - name: order_id
+        description: "ID da ordem de compra."
+      - name: detail_id
+        description: "Detalhamento do item da ordem de compra."
+      - name: order_is_online
+        description: "Identificador de se a compra foi online."
+      - name: order_sales_person_id
+        description: "ID do vendedor."
+        tests:
+          - relationships:
+              field: sales_person_id
+              to: ref('dim_sales_person')
+      - name: order_customer_id
+        description: "ID do cliente que realizou a compra."
+        tests:
+          - relationships:
+              field: customer_id
+              to: ref('dim_customer')
+      - name: territory_id
+        description: "ID do território."
+      - name: bill_to_address_id
+        description: "ID do endereço de cobrança."
       - name: order_ship_to_address_id
+        description: "ID do endereço de entrega."
         tests:
           - relationships:
               field: address_id
               to: ref('dim_address')
+      - name: order_ship_method_id
+        description: "ID do método de envio."
+        tests:
+          - relationships:
+              field: ship_method_id
+              to: ref('dim_ship_method')
       - name: order_date
+        description: "Data de compra."
         tests:
           - relationships:
               field: date_day
               to: ref('dim_calendar')
       - name: order_credit_card_id
+        description: "ID do cartão de crédito utilizado na compra."
         tests:
           - relationships:
               field: credit_card_id
               to: ref('dim_credit_card')
-      - name: order_customer_id
-        tests:
-          - relationships:
-              field: customer_id
-              to: ref('dim_customer')
       - name: detail_product_id
+        description: "ID do produto comprado."
         tests:
           - relationships:
               field: product_id
               to: ref('dim_product')
-      - name: order_sales_person_id
-        tests:
-          - relationships:
-              field: sales_person_id
-              to: ref('dim_sales_person')
-      - name: order_ship_method_id
-        tests:
-          - relationships:
-              field: ship_method_id
-              to: ref('dim_ship_method')
+      - name: special_offer_description
+        description: "Descrição da oferta especial"
+      - name: currency_average_rate
+        description: "Taxa média de conversão de moeda."
+      - name: order_revision_number
+        description: "Número de revisão da ordem."
+      - name: order_status
+        description: "Status da ordem de compra."
+      - name: detail_qty
+        description: "Quantidade do item detalhado."
+      - name: detail_unit_price
+        description: "Preço unitário do item detalhado."
+      - name: detail_value
+        description: "Valor do item detalhado."
+      - name: detail_unit_price_discount_pct
+        description: "Desconto percentual do item detalhado."
+      - name: detail_discount_value
+        description: "Valor do desconto do item detalhado."
+      - name: detail_net_value
+        description: "Valor líquido do item detalhado."
+      - name: order_subtotal
+        description: "Valor subtotal da ordem de compra."
+      - name: detail_tax_amt
+        description: "Valor de taxação do item detalhado."
+      - name: order_tax_amt
+        description: "Valor de taxação da ordem de compra."
+      - name: detail_freight
+        description: "Valor do frete do item detalhado."
+      - name: order_freight
+        description: "Valor do frete da ordem de compra."
+      - name: detail_total_due
+        description: "Valor total da compra pelo item detalhado."
+      - name: order_total_due
+        description: "Valor total da ordem de compra."
+      - name: order_due_date
+        description: "Data da cobrança."
+      - name: order_ship_date
+        description: "Data do envio."
+      - name: order_purchase_number
+        description: "Número da compra."
+      - name: order_account_number
+        description: "Número da conta."
+
+
