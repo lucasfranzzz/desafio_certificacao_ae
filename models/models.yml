@@ -273,5 +273,3 @@ models:
         description: "Número da compra."
       - name: order_account_number
         description: "Número da conta."
-
-
