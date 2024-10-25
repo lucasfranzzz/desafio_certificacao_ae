@@ -37,18 +37,18 @@ with base_sales_person as
 (
     select
         base_sales_person.sales_person_id
-        , base_person.name
-        , base_employee.employee_job_title
-        , base_employee.employee_hire_date
-        , base_employee.employee_salaried_flag
-        , base_employee.employee_current_flag
-        , base_employee.employee_organization_node
-        , base_sales_person.territory_id
-        , base_sales_person.sales_quota
-        , base_sales_person.bonus
-        , base_sales_person.commission_pct
-        , base_sales_person.sales_ytd
-        , base_sales_person.sales_last_year
+        , base_person.name as sales_person_name
+        , base_employee.employee_job_title as sales_person_job_title
+        , base_employee.employee_hire_date as sales_person_hire_date
+        , base_employee.employee_salaried_flag as sales_person_salaried_flag
+        , base_employee.employee_current_flag as sales_person_current_flag
+        , base_employee.employee_organization_node as sales_person_organization_node
+        , base_sales_person.territory_id as sales_person_territory_id
+        , base_sales_person.sales_quota as sales_person_quota
+        , base_sales_person.bonus as sales_person_bonus
+        , base_sales_person.commission_pct as sales_person_comission_pct
+        , base_sales_person.sales_ytd as sales_person_sales_ytd
+        , base_sales_person.sales_last_year as sales_person_sales_last_year
     from base_sales_person
     left join base_employee
         on base_sales_person.sales_person_id = base_employee.employee_id
