@@ -41,8 +41,6 @@ models:
     marts:
       +materialized: table
       dimensions:
-        dim_sales_person:
-          +materialized: ephemeral
         dim_ship_method:
           +materialized: ephemeral
       
