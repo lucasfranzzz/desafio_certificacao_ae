@@ -40,7 +40,3 @@ models:
     +materialized: ephemeral
     marts:
       +materialized: table
-      dimensions:
-        dim_ship_method:
-          +materialized: ephemeral
-      
