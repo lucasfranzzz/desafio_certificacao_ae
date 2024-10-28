@@ -169,8 +169,8 @@ models:
         description: "ID da ordem de compra."
       - name: detail_id
         description: "Detalhamento do item da ordem de compra."
-      - name: order_is_online
-        description: "Identificador de se a compra foi online."
+      - name: order_method
+        description: "Identificador de método de compra (online/consultiva)."
       - name: order_sales_person_id
         description: "ID do vendedor."
         tests:
