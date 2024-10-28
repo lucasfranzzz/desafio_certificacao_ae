@@ -27,7 +27,7 @@ with base_orders as
     from base_orders
     left join base_product
         on base_orders.detail_product_id = base_product.product_id
-    order by 4 desc
+    order by 2 desc
 )
 
 select * from joined

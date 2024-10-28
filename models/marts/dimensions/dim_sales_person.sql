@@ -49,6 +49,11 @@ with base_sales_person as
         , base_sales_person.commission_pct as sales_person_comission_pct
         , base_sales_person.sales_ytd as sales_person_sales_ytd
         , base_sales_person.sales_last_year as sales_person_sales_last_year
+        , case
+            when base_sales_person.sales_last_year = 0
+                then 0
+            else round((base_sales_person.sales_ytd - base_sales_person.sales_last_year) / base_sales_person.sales_last_year,4)
+            end as sales_year_difference
     from base_sales_person
     left join base_employee
         on base_sales_person.sales_person_id = base_employee.employee_id

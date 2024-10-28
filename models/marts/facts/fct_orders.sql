@@ -32,21 +32,16 @@ with base_int_orders_detailed as
         , base_int_orders_detailed.order_id
         , base_int_orders_detailed.detail_id
 
-        , base_int_orders_detailed.order_is_online
         , base_int_orders_detailed.order_sales_person_id --dim_sales_person
         , base_int_orders_detailed.order_customer_id --dim_customers
-        , base_int_orders_detailed.order_territory_id --?
-        , base_int_orders_detailed.order_bill_to_address_id --dim_address
         , base_int_orders_detailed.order_ship_to_address_id --dim_address
-        , base_int_orders_detailed.order_ship_method_id --dim_ship_method
         , base_int_orders_detailed.detail_product_id --dim_product
-        , base_int_orders_detailed.detail_special_offer_id --?
-        , base_special_offer.special_offer_description
+        , base_int_orders_detailed.order_credit_card_id --dim_credit_card
+        , base_int_orders_detailed.order_date --dim_calendar
 
         , base_currency_rate.currency_average_rate
         , base_int_orders_detailed.order_revision_number
         , base_int_orders_detailed.order_status
-        , base_int_orders_detailed.order_credit_card_id
         , base_int_orders_detailed.detail_qty
 
         , base_int_orders_detailed.detail_unit_price
@@ -63,12 +58,14 @@ with base_int_orders_detailed as
         , base_int_orders_detailed.detail_total_due
         , base_int_orders_detailed.order_total_due
 
-        , base_int_orders_detailed.order_date
         , base_int_orders_detailed.order_due_date
         , base_int_orders_detailed.order_ship_date
         
         , base_int_orders_detailed.order_purchase_number
         , base_int_orders_detailed.order_account_number
+        , base_int_orders_detailed.order_method
+        , base_special_offer.special_offer_description
+
     from base_int_orders_detailed
     left join base_currency_rate
         on base_int_orders_detailed.order_currency_rate_id = base_currency_rate.currency_rate_id
