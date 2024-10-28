@@ -131,29 +131,31 @@ models:
         tests:
           - unique
           - not_null
-      - name: name
+      - name: sales_person_name
         description: "Nome do vendedor."
-      - name: employee_job_title
+      - name: sales_person_job_title
         description: "Cargo do vendedor."
-      - name: employee_hire_date
+      - name: sales_person_hire_date
         description: "Data de contratação do vendedor."
-      - name: employee_salaried_flag
+      - name: sales_person_salaried_flag
         description: "Indicativo se o vendedor é assalariado."
-      - name: employee_current_flag
+      - name: sales_person_current_flag
         description: "Indicativo se o vendedor é ativo."
-      - name: employee_organization_node
+      - name: sales_person_organization_node
         description: "Nó da organização do vendedor."
-      - name: territory_id
+      - name: sales_person_territory_id
         description: "ID do território do vendedor."
-      - name: sales_quota
+      - name: sales_person_quota
         description: "Meta de vendas."
-      - name: bonus
+      - name: sales_person_bonus
         description: "Bonus do vendedor."
-      - name: commission_pct
+      - name: sales_person_commission_pct
         description: "Percentual de comissão do vendedor."
-      - name: sales_ytd
+      - name: sales_person_sales_ytd
         description: "Vendas do vendedor acumuladas no ano."
-      - name: sales_last_year
+      - name: sales_person_sales_last_year
+        description: "Vendas do vendedor no ano anterior."
+      - name: sales_year_difference
         description: "Vendas do vendedor no ano anterior."
   - name: fct_orders
     description: "Tabela de cadastro de ordens de compra e seus detalhamentos."
@@ -167,8 +169,8 @@ models:
         description: "ID da ordem de compra."
       - name: detail_id
         description: "Detalhamento do item da ordem de compra."
-      - name: order_is_online
-        description: "Identificador de se a compra foi online."
+      - name: order_method
+        description: "Identificador de método de compra (online/consultiva)."
       - name: order_sales_person_id
         description: "ID do vendedor."
         tests:
