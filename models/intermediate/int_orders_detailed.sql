@@ -20,8 +20,13 @@ with base_order_detail as
         , order_due_date
         , order_ship_date
         , order_credit_card_id
-        , order_status
-        , order_is_online
+        , order_status      
+        , case 
+            order_is_online
+            when TRUE
+                then 'ONLINE'
+            else 'CONSULTIVA'
+            end as order_method
         , order_purchase_number
         , order_account_number
         , order_customer_id
@@ -43,8 +48,7 @@ with base_order_detail as
     select 
         base_order_detail.order_id
         , base_order_detail.detail_id
-
-        , base_order_header.order_is_online
+        , base_order_header.order_method
         , base_order_header.order_sales_person_id --dim_sales_person
         , base_order_header.order_customer_id --dim_customers
         , base_order_header.order_territory_id --?

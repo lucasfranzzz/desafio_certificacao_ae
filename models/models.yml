@@ -155,20 +155,6 @@ models:
         description: "Vendas do vendedor acumuladas no ano."
       - name: sales_last_year
         description: "Vendas do vendedor no ano anterior."
-  - name: dim_ship_method
-    description: "Tabela de cadastro de métodos de envio."
-    columns:
-      - name: ship_method_id
-        description: "ID do método de entrega."
-        tests:
-          - unique
-          - not_null
-      - name: ship_method_name
-        description: "Nome do método de entrega."
-      - name: ship_method_base
-        description: "Base do método de entrega."
-      - name: ship_method_rate
-        description: "Rate do método de entrega."
   - name: fct_orders
     description: "Tabela de cadastro de ordens de compra e seus detalhamentos."
     columns:
@@ -205,12 +191,6 @@ models:
           - relationships:
               field: address_id
               to: ref('dim_address')
-      - name: order_ship_method_id
-        description: "ID do método de envio."
-        tests:
-          - relationships:
-              field: ship_method_id
-              to: ref('dim_ship_method')
       - name: order_date
         description: "Data de compra."
         tests:
