@@ -1,15 +1,19 @@
-Welcome to your new dbt project!
+#######################################################
 
-### Using the starter project
+Certificação em Engenharia de Analytics by Indicium
 
-Try running the following commands:
-- dbt run
-- dbt test
+Aluno: Lucas Franz de Matos
 
+#######################################################
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [dbt community](https://getdbt.com/community) to learn from other analytics engineers
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+ # Repositório do projeto (GitHub): https://github.com/lucasfranzzz/desafio_certificacao_ae
+ 
+ # DW Snowflake: https://app.snowflake.com/hcb48722/indiciumacademy/#/data/databases/FEA24_9/schemas/DBT_LMATOS_DESAFIO
+ 
+ # Projeto dbt Cloud:https://mk847.us1.dbt.com/develop/70403103952004/projects/70403103970948
+ 
+ # Documentação do projeto dbt: https://mk847.us1.dbt.com/accounts/70403103952004/runs/70403127157802/docs/#!/overview
+ 
+ # Vídeo: https://drive.google.com/file/d/1CpHZDJMniH8rAsyfYS3-6jMpbMatBed1/view?usp=drive_link
+
+#######################################################
